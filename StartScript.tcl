@@ -28,11 +28,33 @@ $ns duplex-link $src1 $edge1 5Mb 1ms DropTail
 $ns duplex-link $src2 $edge1 5Mb 1ms DropTail
 $ns duplex-link $edge1 $core 5Mb 1ms DropTail
 $ns duplex-link $core $edge2 3Mb 1ms DropTail
-$ns queue-limit $edge2 $core 10
+
+# Limit queue size $ns queue-limit $node1 $node2 numberOfPackets
+# $ns queue-limit $node1 $node2 numberOfPackets
+
+$ns queue-limit $core $edge2  10 
 $ns duplex-link $edge2 $dest1 5Mb 1ms DropTail
 $ns duplex-link $edge2 $dest2 5Mb 1ms DropTail
 
 
+
+# Define traffic sources and sinks
+# UDP Source and Sink
+set udpSrc [new Agent/UDP]
+set nullSink1 [new Agent/Null]
+$ns attach-agent $src1 $udpSrc
+$ns attach-agent $dest1 $nullSink1
+$ns connect $udpSrc $nullSink1
+
+# CBR Traffic on UDP Source
+set cbr [new Application/Traffic/CBR]
+$cbr set packetSize_ 500
+
+# 500 *8 / 2*10^6
+$cbr set interval_ 0.002
+$cbr attach-agent $udpSrc
+$ns at 1.0 "$cbr start"
+$ns at 45.0 "$cbr stop"
 
 #####################################################
 
