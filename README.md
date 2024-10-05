@@ -1,7 +1,7 @@
 # NS-2 Simulation of a Differentiated Services IP Network
 
 ## Overview
-This repository contains the necessary files and scripts for simulating a Differentiated Services (DiffServ) IP network using NS-2. The assignment provides hands-on experience with service differentiation and Quality of Service (QoS) in IP networks through a series of simulations.
+This repository contains the necessary files and scripts for simulating a Differentiated Services (DiffServ) IP network using NS-2. The assignment provides hands-on experience with service differentiation and Quality of Service (QoS) in IP networks through a series of simulations. This lab was part of my Erasmus exchange program in **University of Malaga** in the Telecommunication Managment Course.
 
 ## Objective
 The objective of this lab is to enhance the understanding of the impact of service differentiation in IP networks. Using NS-2, the following scenarios are simulated:
